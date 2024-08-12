@@ -4,17 +4,20 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "dev": "nodemon server.js",
-    "benchmark": "node benchmark.js" 
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "benchmark": "node benchmark.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@fastify/formbody": "^7.4.0",
+    "@fastify/static": "^7.0.4",
     "fastify": "^4.28.1",
     "fastify-swagger": "^5.1.1",
+    "node-fetch": "^3.3.2",
     "uuid": "^10.0.0"
   },
   "devDependencies": {

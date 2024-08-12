@@ -1,0 +1,54 @@
+const fetch = require('node-fetch'); // Install with `npm install node-fetch`
+
+const sendWhatsAppMessage = async (req, reply) => {
+    const { message, to } = req.body;
+    
+    if (!message || !to) {
+        return reply.code(400).send({ error: 'Message and recipient phone number are required' });
+    }
+
+    const url = `https://graph.facebook.com/v20.0/241360959050305/messages`;
+    const accessToken = 'EAAY3T9eRteMBO8wilZC0BWSLF7bf1mQdqwcgBz5sG7HpuZBUlIztXOFZBg11hJtjVcxEZBnvMTaPZBV5SqcJoaA2yb6VbpkGnG6aZCLKpHznMZAFWZBgjWWj3oF5odfqffzVyW8uatHgJXkupaFJZAlaYxaApeQ0p9C1E3ep681Y32wkcHMKQHd98feczibZCqAJixWduT7lUmKlQ41xipcFUZD';
+
+    const payload = {
+        messaging_product: 'whatsapp',
+        to: to,
+        type: 'template',
+        template: {
+            name: 'hello_world',
+            language: {
+                code: 'en_US'
+            },
+            components: [{
+                type: 'body',
+                parameters: [{
+                    type: 'text',
+                    text: message
+                }]
+            }]
+        }
+    };
+
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${accessToken}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        });
+
+        const responseBody = await response.json();
+
+        if (!response.ok) {
+            return reply.code(response.status).send({ error: 'Failed to send message', details: responseBody });
+        }
+
+        reply.send({ success: true, message: 'Message sent', response: responseBody });
+    } catch (error) {
+        reply.code(500).send({ error: 'Failed to send message', details: error.message });
+    }
+};
+
+module.exports = { sendWhatsAppMessage };

@@ -10,6 +10,8 @@ const fastify = require('fastify')({ logger: true });
 // })
 const PORT = 4000;
 
+fastify.register(require('@fastify/formbody'));
+
 // const routes=require('./route/Items');
 
 fastify.register(require('./route/Items'));
