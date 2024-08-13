@@ -8,7 +8,7 @@ const sendWhatsAppMessage = async (req, reply) => {
     }
 
     const url = `https://graph.facebook.com/v20.0/241360959050305/messages`;
-    const accessToken = 'EAAY3T9eRteMBO8wilZC0BWSLF7bf1mQdqwcgBz5sG7HpuZBUlIztXOFZBg11hJtjVcxEZBnvMTaPZBV5SqcJoaA2yb6VbpkGnG6aZCLKpHznMZAFWZBgjWWj3oF5odfqffzVyW8uatHgJXkupaFJZAlaYxaApeQ0p9C1E3ep681Y32wkcHMKQHd98feczibZCqAJixWduT7lUmKlQ41xipcFUZD';
+    const accessToken = '**********************';
 
     const payload = {
         messaging_product: 'whatsapp',
